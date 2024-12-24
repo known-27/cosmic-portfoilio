@@ -19,6 +19,7 @@ import jissoImage from '@/assets/sketches/jisso.jpg'
 import { Star, Moon, Sun, CompassIcon as Comet, X } from 'lucide-react'
 import { useState } from 'react'
 
+
 const artworks = [
   { 
     id: 1, 
@@ -148,7 +149,12 @@ const ArtworkCard = ({ artwork, onImageClick }: ArtworkCardProps) => {
   )
 }
 
-const ImageModal = ({ artwork, onClose }) => {
+interface ImageModalProps {
+  artwork: typeof artworks[0];
+  onClose: () => void;
+}
+
+const ImageModal = ({ artwork, onClose }: ImageModalProps) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -192,8 +198,9 @@ const ImageModal = ({ artwork, onClose }) => {
 };
 
 
+
 export default function Arts() {
-  const [selectedArtwork, setSelectedArtwork] = useState(null)
+  const [selectedArtwork, setSelectedArtwork] = useState<typeof artworks[0] | null>(null);
 
   return (
     <motion.div

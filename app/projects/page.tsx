@@ -4,7 +4,11 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState } from 'react'
 
-const CollapsibleText = ({ text }) => {
+interface CollapsibleTextProps {
+  text: string;
+}
+
+const CollapsibleText: React.FC<CollapsibleTextProps> = ({ text }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const maxLength = 100;
   const needsCollapse = text.length > maxLength;
@@ -27,6 +31,7 @@ const CollapsibleText = ({ text }) => {
     </div>
   );
 };
+
 
 const projects = [
   { 
