@@ -44,10 +44,10 @@ const createPlanetTexture = (color: string, spots: number = 0, spotColor: string
   return new THREE.CanvasTexture(canvas)
 }
 
-const Planet: React.FC<PlanetProps> = ({ color, label, onClick, ringColor, orbitRadius, orbitSpeed, position, scale = 1 }) => {
+const Planet: React.FC<PlanetProps> = ({ color, label, onClick, ringColor, orbitSpeed, position, scale = 1 }) => {
   const mesh = useRef<THREE.Mesh>(null!)
   const textRef = useRef<THREE.Mesh>(null!) // Reference for the text
-  const [hovered, setHover] = useState(false)
+  const [, setHover] = useState(false)
   const groupRef = useRef<THREE.Group>(null!)
   
   const texture = useMemo(() => {
@@ -122,7 +122,7 @@ const Planet: React.FC<PlanetProps> = ({ color, label, onClick, ringColor, orbit
 const Sun: React.FC<{ onClick: () => void; scale: number }> = ({ onClick, scale }) => {
   const sunRef = useRef<THREE.Mesh>(null!)
   const textRef = useRef<THREE.Mesh>(null!) // Reference for the label
-  const [hovered, setHovered] = useState(false)
+  const [, setHovered] = useState(false)
 
   const fragmentShader = `
     uniform vec3 colorA;
@@ -162,10 +162,10 @@ const Sun: React.FC<{ onClick: () => void; scale: number }> = ({ onClick, scale 
     }
   });
 
-  const handleClick = (e: THREE.Event) => {
+  const handleClick = (e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation();
     onClick();
-  };
+  };  
 
   return (
     <group scale={scale}>

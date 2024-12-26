@@ -12,7 +12,7 @@ export default function Home() {
         Welcome to My Cosmic Portfolio
       </h1>
       <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-light mb-6 sm:mb-8 md:mb-10 lg:mb-12 max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-2xl text-center text-gray-300">
-        Explore the digital universe of tomorrow's web development, where innovation orbits imagination. Dive into my projects, skills, and cosmic chronicles.
+        Explore the digital universe of tomorrow&rsquo;s web development, where innovation orbits imagination. Dive into my projects, skills, and cosmic chronicles.
       </p>
       <Suspense fallback={<div>Loading...</div>}>
         <Navigation3D />

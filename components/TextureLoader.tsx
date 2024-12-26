@@ -1,7 +1,7 @@
 'use client'
 
 import { useLoader } from '@react-three/fiber'
-import { TextureLoader } from 'three/src/loaders/TextureLoader'
+import { TextureLoader } from 'three'
 
 export function useTextures() {
   const earthTexture = useLoader(TextureLoader, '/assets/earth_texture.jpg')
@@ -11,4 +11,3 @@ export function useTextures() {
 
   return { earthTexture, marsTexture, saturnTexture, jupiterTexture }
 }
-

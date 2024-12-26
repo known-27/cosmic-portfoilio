@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { useState } from 'react'
-import { Star, CompassIcon as Comet, Rocket } from 'lucide-react'
+import { Rocket } from 'lucide-react'
 
 interface FormData {
   name: string
@@ -137,7 +137,7 @@ export default function Contact() {
         throw new Error('Failed to send message')
       }
       setSubmitStatus('success')
-    } catch (error) {
+    } catch {
       setSubmitStatus('error')
     }
 

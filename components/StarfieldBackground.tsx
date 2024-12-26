@@ -28,33 +28,41 @@ export default function StarfieldBackground() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
+    const resizeCanvas = () => {
+      if (canvas) {
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+      }
+    }
+
+    resizeCanvas()
 
     const stars: Star[] = []
     const shootingStars: ShootingStar[] = []
 
     for (let i = 0; i < 200; i++) {
       stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
+        x: Math.random() * (canvas?.width || 0), // Optional chaining to prevent null access
+        y: Math.random() * (canvas?.height || 0),
         size: Math.random() * 2,
         speed: Math.random() * 3 + 1,
       })
     }
 
-    function createShootingStar() {
+    function createShootingStar(): ShootingStar {
       return {
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
+        x: Math.random() * (canvas?.width || 0), // Optional chaining here too
+        y: Math.random() * (canvas?.height || 0),
         length: Math.random() * 80 + 20,
         speed: Math.random() * 10 + 5,
-        angle: Math.random() * Math.PI / 4 + Math.PI * 7 / 8,
+        angle: Math.random() * Math.PI / 4 + (Math.PI * 7) / 8,
         opacity: 1,
       }
     }
 
     function animate() {
+      if (!ctx || !canvas) return
+
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       // Draw stars
@@ -64,14 +72,12 @@ export default function StarfieldBackground() {
         ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2)
         ctx.fill()
 
-        // Reduce the downward speed of the stars to half
         star.y += star.speed * 0.5
         if (star.y > canvas.height) {
           star.y = 0
-          star.x = Math.random() * canvas.width
+          star.x = Math.random() * (canvas.width || 0)
         }
       })
-
 
       // Draw and update shooting stars
       shootingStars.forEach((star, index) => {
@@ -106,10 +112,7 @@ export default function StarfieldBackground() {
 
     animate()
 
-    const handleResize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
+    const handleResize = () => resizeCanvas()
 
     window.addEventListener('resize', handleResize)
 
@@ -121,4 +124,3 @@ export default function StarfieldBackground() {
   return <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full -z-10" />
 }
 
- 

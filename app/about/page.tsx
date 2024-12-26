@@ -69,7 +69,7 @@ export default function About() {
 
       const response = await fetch('/resume/pravin-sharma-resume.pdf')
       const blob = await response.blob()
-      
+
       // Clear interval and set to 100%
       clearInterval(progressInterval)
       setDownloadProgress(100)
@@ -79,15 +79,15 @@ export default function About() {
       const link = document.createElement('a')
       link.href = url
       link.download = 'pravin-sharma-resume.pdf'
-      
+
       // Trigger download
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
-      
+
       // Cleanup
       window.URL.revokeObjectURL(url)
-      
+
       // Show complete state briefly
       await new Promise(resolve => setTimeout(resolve, 1000))
     } catch (error) {
@@ -159,10 +159,10 @@ export default function About() {
             className="max-w-xl text-center lg:text-left space-y-6"
           >
             <p className="text-xl font-light text-gray-200 leading-relaxed">
-              As a passionate Full Stack Developer, I navigate the digital landscape with innovation and technical expertise. My mission is to create seamless, user-centric applications that push the boundaries of what's possible in web and mobile development.
+              As a passionate Full Stack Developer, I navigate the digital landscape with innovation and technical expertise. My mission is to create seamless, user-centric applications that push the boundaries of what&apos;s possible in web and mobile development.
             </p>
             <p className="text-xl font-light text-gray-200 leading-relaxed">
-              Currently, I'm a second-year Computer Science Engineering student at the University of Mumbai, where I apply my strong foundation in programming and technology to solve real-world problems. With a passion for hands-on experience, I continuously refine my skills and collaborate with others to create impactful applications.
+              Currently, I&apos;m a second-year Computer Science Engineering student at the University of Mumbai, where I apply my strong foundation in programming and technology to solve real-world problems. With a passion for hands-on experience, I continuously refine my skills and collaborate with others to create impactful applications.
             </p>
           </motion.div>
         </div>
@@ -218,110 +218,110 @@ export default function About() {
         </motion.div>
 
         {/* Enhanced Centered Resume Download Button */}
-      <motion.div
-        initial={{ y: 50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="w-full flex justify-center items-center my-16 px-4"
-      >
-        <div className="relative group">
-          {/* Cosmic background effect */}
-          <motion.div
-            className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 rounded-full opacity-75 blur-lg group-hover:opacity-100 transition-all duration-500"
-            animate={{
-              scale: downloading ? [1, 1.1, 1] : 1,
-              // rotate: downloading ? [0, 360] : 0,
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-          
-          {/* Button glow effect */}
-          <div className="absolute inset-0.5 bg-black rounded-full blur-sm" />
-
-          {/* Interactive button */}
-          <button
-            onClick={handleDownloadResume}
-            disabled={downloading}
-            className="relative px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 flex items-center space-x-3 min-w-[240px] justify-center group disabled:cursor-wait"
-          >
-            {/* Download icon */}
+        <motion.div
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 1.2 }}
+          className="w-full flex justify-center items-center my-16 px-4"
+        >
+          <div className="relative group">
+            {/* Cosmic background effect */}
             <motion.div
+              className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 rounded-full opacity-75 blur-lg group-hover:opacity-100 transition-all duration-500"
               animate={{
-                rotate: downloading ? 360 : 0
+                scale: downloading ? [1, 1.1, 1] : 1,
+                // rotate: downloading ? [0, 360] : 0,
               }}
               transition={{
-                duration: 2,
+                duration: 3,
                 repeat: Infinity,
                 ease: "linear"
               }}
-            >
-              <Download className={`w-6 h-6 text-white ${downloading ? 'opacity-80' : 'group-hover:scale-110 duration-300'}`} />
-            </motion.div>
-            
-            {/* Button text */}
-            <span className="text-lg font-semibold text-white tracking-wide">
-              {downloading ? `Downloading ${downloadProgress}%` : 'Download Resume'}
-            </span>
+            />
 
-            {/* Download progress ring */}
-            {downloading && (
+            {/* Button glow effect */}
+            <div className="absolute inset-0.5 bg-black rounded-full blur-sm" />
+
+            {/* Interactive button */}
+            <button
+              onClick={handleDownloadResume}
+              disabled={downloading}
+              className="relative px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 flex items-center space-x-3 min-w-[240px] justify-center group disabled:cursor-wait"
+            >
+              {/* Download icon */}
+              <motion.div
+                animate={{
+                  rotate: downloading ? 360 : 0
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              >
+                <Download className={`w-6 h-6 text-white ${downloading ? 'opacity-80' : 'group-hover:scale-110 duration-300'}`} />
+              </motion.div>
+
+              {/* Button text */}
+              <span className="text-lg font-semibold text-white tracking-wide">
+                {downloading ? `Downloading ${downloadProgress}%` : 'Download Resume'}
+              </span>
+
+              {/* Download progress ring */}
+              {downloading && (
+                <>
+                  <motion.div
+                    className="absolute -inset-1 rounded-full border-2 border-white/50"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{
+                      scale: [1, 1.1, 1],
+                      opacity: [0.5, 0.2, 0.5]
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                  <motion.div
+                    className="absolute inset-0 rounded-full border-2 border-white/20"
+                    style={{
+                      background: `conic-gradient(from 0deg, transparent ${100 - downloadProgress}%, rgba(255,255,255,0.2) ${100 - downloadProgress}%)`
+                    }}
+                  />
+                </>
+              )}
+            </button>
+
+            {/* Particle effects */}
+            {mounted && !downloading && (
               <>
-                <motion.div
-                  className="absolute -inset-1 rounded-full border-2 border-white/50"
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{
-                    scale: [1, 1.1, 1],
-                    opacity: [0.5, 0.2, 0.5]
-                  }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                <motion.div
-                  className="absolute inset-0 rounded-full border-2 border-white/20"
-                  style={{
-                    background: `conic-gradient(from 0deg, transparent ${100 - downloadProgress}%, rgba(255,255,255,0.2) ${100 - downloadProgress}%)`
-                  }}
-                />
+                {[...Array(6)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-1 h-1 bg-blue-400 rounded-full"
+                    initial={{
+                      x: 0,
+                      y: 0,
+                      scale: 0,
+                    }}
+                    animate={{
+                      x: [0, (Math.random() - 0.5) * 100],
+                      y: [0, (Math.random() - 0.5) * 100],
+                      scale: [0, 1, 0],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatType: "loop",
+                      delay: i * 0.2,
+                    }}
+                  />
+                ))}
               </>
             )}
-          </button>
-
-          {/* Particle effects */}
-          {mounted && !downloading && (
-            <>
-              {[...Array(6)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-1 h-1 bg-blue-400 rounded-full"
-                  initial={{
-                    x: 0,
-                    y: 0,
-                    scale: 0,
-                  }}
-                  animate={{
-                    x: [0, (Math.random() - 0.5) * 100],
-                    y: [0, (Math.random() - 0.5) * 100],
-                    scale: [0, 1, 0],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    delay: i * 0.2,
-                  }}
-                />
-              ))}
-            </>
-          )}
-        </div>
-      </motion.div>
+          </div>
+        </motion.div>
 
         <motion.div
           initial={{ y: 50, opacity: 0 }}
